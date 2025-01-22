@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Daily Wallpaper",
+  "description": "Displays a random daily image, the current time, and an inspirational quote on the new tab page.",
+  "version": "1.0",
+  "permissions": ["alarms", "storage"],
+  "host_permissions": [
+    "https://raw.githubusercontent.com/redwoodux/daily-wallpaper-images-2025/master/*"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "icons": {
+    "16": "images/favicon-16x16.png",
+    "48": "images/favicon-48x48.png",
+    "128": "images/favicon-128x128.png"
+  }
+}

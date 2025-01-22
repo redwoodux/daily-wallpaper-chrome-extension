@@ -1,0 +1,226 @@
+:root {
+    --color-bg-base: 210, 36%, 96%; /* Example: a light gray color in HSL */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: -apple-system, BlinkMacSystemFont, "Neue Haas Grotesk Text Pro", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-weight: 500;
+    font-size: 9.5rem;
+    color: hsl(var(--color-bg-base) / 0.98);
+    /*text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);*/
+    transition: opacity 0.5s ease; /* --app-container-transition */
+}
+
+#content {
+    text-align: center;
+    width:100%;
+    padding: 0px 30px;
+    z-index: 2;
+}
+
+.center {
+    margin: 0;
+    padding: 0;
+    justify-self: center;
+    max-width: 900px;
+}
+
+#time {
+    font-size: 10rem; /* Adjusted font size */
+    /*margin-bottom: 20px;*/
+    z-index: 2;
+    position: relative;
+    animation: fadeIn 0.5s ease-in-out; /* Smooth fade-in for text */
+    margin-top: -30px;
+}
+
+#quote {
+    font-size: 2.5rem;
+    font-style: unset;
+    overflow-wrap: break-word;
+    position: absolute;
+    bottom: 50px;
+    width: calc(100% - 24px); /* Full width minus 12px padding on both sides */
+    max-width: calc(1100px - 24px); /* Adjust max-width to account for padding */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 2;
+    padding: 0 12px; /* 12px padding on both sides */
+    box-sizing: border-box; /* Ensure padding is included in width */
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+
+#layerOntop {
+    margin: 0;
+    padding: 0;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.layerOntopWhite {
+    background-color: #ffffff50;
+}
+
+.layerOntopBlack {
+    background-color: #00000030;
+}
+
+
+/* Info Icon */
+#info-icon {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    z-index: 3;
+    animation: fadeIn 2.2s ease-in-out;
+}
+
+#info-icon.light {
+    background-image: url('/images/info-icon-light.svg'); /* Light icon */
+}
+
+#info-icon.dark {
+    background-image: url('/images/info-icon-dark.svg'); /* Dark icon */
+}
+
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 4;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+    opacity: 0; /* Initial opacity for fade-in */
+    transition: opacity 1s ease; /* Smooth transition for fade-in */
+}
+
+.modal.show {
+    display: block; /* Display modal */
+    opacity: 1; /* Fully visible */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centered */
+    padding: 34px 20px 30px 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    color: #333;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    animation: fadeInModal 0.3s ease; /* Fade-in animation for modal content */
+}
+
+/* Fade-in animation */
+@keyframes fadeInModal {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* Slight upward motion */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Back to original position */
+    }
+}
+
+#modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    display: none;
+}
+
+#modal-close:hover,
+#modal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Metadata styles */
+#modal-body {
+    font-size: 1rem;
+}
+
+#modal-body .metadata-entry {
+    display: flex; /* Use flexbox for alignment */
+    align-items: flex-start; /* Align label and value vertically */
+    margin-bottom: 10px;
+}
+
+#modal-body .metadata-key {
+    color: #999;
+    font-weight: normal;
+    margin-right: 5px; /* Add space between label and value */
+    flex-shrink: 0; /* Prevent label from shrinking */
+}
+
+#modal-body .metadata-value {
+    color: #555;
+    font-weight: lighter;
+    overflow-wrap: anywhere; /* Handle long text wrapping */
+}
+
+/* Specific styling for "Link to the original image" */
+#modal-body .original-image-link {
+    display: block; /* Ensure it starts on a new line */
+    margin-top: 35px; /* Add 15px margin on top */
+    color: #e7a362; /* Link color */
+    text-decoration: none;
+}
+
+#modal-body .original-image-link:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+#modal-body a {
+    color: #e7a362;
+    text-decoration: none;
+}
+
+#modal-body a:hover {
+    text-decoration: underline;
+}
+
+#modal-body .metadata-entry:last-of-type {
+    margin-bottom: 20px; /* Adjust as needed */
+}
